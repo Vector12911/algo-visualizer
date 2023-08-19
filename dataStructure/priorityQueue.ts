@@ -113,7 +113,7 @@ export class PriorityQueue {
 // Creating The Priority Queue
 // var PriQueue = new PriorityQueue();
 
-// Adding the Elements
+// // Adding the Elements
 // PriQueue.push({ item: 32, priority: 10 });
 // PriQueue.push({ item: 50, priority: 9 });
 // PriQueue.push({ item: 12, priority: 14 });

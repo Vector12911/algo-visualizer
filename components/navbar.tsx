@@ -2,6 +2,7 @@
 "use client";
 import { useStateContext } from "@/context/state";
 import Arrow from "@/icons/arrow";
+import { ALGORITHM, GRAPH_TYPE, SPEED } from "@/types";
 import React from "react";
 
 const Navbar = () => {
@@ -24,7 +25,10 @@ const Navbar = () => {
           <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[150%] space-y-2">
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, currentAlgo: "astar" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  currentAlgo: ALGORITHM.ASTART,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -32,7 +36,10 @@ const Navbar = () => {
             </div>
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, currentAlgo: "djk" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  currentAlgo: ALGORITHM.DJK,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -40,7 +47,10 @@ const Navbar = () => {
             </div>
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, currentAlgo: "bfs" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  currentAlgo: ALGORITHM.BFS,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -48,7 +58,10 @@ const Navbar = () => {
             </div>
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, currentAlgo: "dfs" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  currentAlgo: ALGORITHM.DFS,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -87,7 +100,10 @@ const Navbar = () => {
           <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-full space-y-2">
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, animationSpeed: "slow" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  animationSpeed: SPEED.SLOW,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -95,7 +111,10 @@ const Navbar = () => {
             </div>
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, animationSpeed: "fast" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  animationSpeed: SPEED.FAST,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -103,7 +122,10 @@ const Navbar = () => {
             </div>
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, animationSpeed: "normal" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  animationSpeed: SPEED.NORMAL,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -119,7 +141,10 @@ const Navbar = () => {
           <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[130%] space-y-2">
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, graphType: "grid" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  graphType: GRAPH_TYPE.GRID,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
@@ -127,7 +152,10 @@ const Navbar = () => {
             </div>
             <div
               onClick={() =>
-                setGlobalState((pre) => ({ ...pre, graphType: "graph" }))
+                setGlobalState((pre) => ({
+                  ...pre,
+                  graphType: GRAPH_TYPE.GRAPH,
+                }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >

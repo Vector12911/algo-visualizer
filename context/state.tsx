@@ -1,17 +1,18 @@
 //@ts-nocheck
-
 "use client";
 
+import { ALGORITHM, GRAPH_TYPE, NodeI, SPEED } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
-const ROWS = 30;
-const COLS = 60;
+const ROWS = 24;
+const COLS = 55;
 
-const createNode = (i, j) => {
+const createNode = (i, j): NodeI => {
   return {
     x: i,
     y: j,
     weight: 1,
+    hasWeight: false,
     isStart: false,
     isEnd: false,
     isVisited: false,
@@ -25,14 +26,14 @@ const StateContext = createContext({});
 
 export const StateContextProvider = ({ children }) => {
   const [globalState, setGlobalState] = useState({
-    graphType: "grid",
-    currentAlgo: "bfs",
-    animationSpeed: "normal",
+    graphType: GRAPH_TYPE.GRID,
+    currentAlgo: ALGORITHM.BFS,
+    animationSpeed: SPEED.NORMAL,
   });
 
   const [source, setSource] = useState(null);
   const [destination, setDestination] = useState(null);
-  const [matrix, setMatrix] = useState([]);
+  const [matrix, setMatrix] = useState<NodeI[][]>([]);
 
   useEffect(() => initializeBoard(), []);
 

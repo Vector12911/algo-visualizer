@@ -4,7 +4,12 @@
 
 
 .container {
-  max-width: 1200px; /* Adjust as needed */
+  max-width: 1250px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.temporary-animate {
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
 }
