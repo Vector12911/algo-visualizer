@@ -1,6 +1,7 @@
 //@ts-nocheck
 
 import { PriorityQueue } from "@/dataStructure/priorityQueue"; // Import your pq class here
+import { PointI } from "@/types";
 
 function createMatrix(rows, cols) {
   return Array.from({ length: rows }, () => Array(cols).fill(100));
@@ -11,8 +12,8 @@ const colDirs = [0, 1, 0, -1];
 
 export function Dijktras(matrix, startNode, endNode) {
   console.log("DJK...");
-  const traversal = [];
-  const shortestPath = [];
+  const traversal: PointI[] = [];
+  const shortestPath: PointI[] = [];
   // Use a map to store parent nodes for each visited node
   const parentMap = new Map();
 
@@ -56,7 +57,6 @@ export function Dijktras(matrix, startNode, endNode) {
       }
 
       if (newRow === endRow && newCol === endCol) {
-        console.log("reached");
         parentMap.set(`${endRow}-${endCol}`, { x, y });
         let currentNode = { x: endRow, y: endCol };
         while (true) {
@@ -69,7 +69,9 @@ export function Dijktras(matrix, startNode, endNode) {
         break;
       }
 
-      const weight = matrix[newRow][newCol].weight || 1;
+      const weight = matrix[newRow][newCol].hasWeight
+        ? matrix[newRow][newCol].weight
+        : 1;
 
       const distanceThroughCurrent = currentDistance + weight;
 
@@ -85,6 +87,6 @@ export function Dijktras(matrix, startNode, endNode) {
       }
     }
   }
-
+  shortestPath.reverse();
   return { traversal, shortestPath };
 }

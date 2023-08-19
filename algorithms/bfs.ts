@@ -4,8 +4,8 @@ import { Queue } from "@/dataStructure/queue";
 
 export function BFS(matrix, startNode, endNode) {
   console.log("BFS...");
-  const traversal = [];
-  const shortestPath = [];
+  const traversal: PointI[] = [];
+  const shortestPath: PointI[] = [];
   // Use a map to store parent nodes for each visited node
   const parentMap = new Map();
 
@@ -65,6 +65,8 @@ export function BFS(matrix, startNode, endNode) {
       }
     }
   }
+
+  shortestPath.reverse();
 
   return { traversal, shortestPath };
 }
