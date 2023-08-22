@@ -1,9 +1,10 @@
 //@ts-nocheck
 import { useStateContext } from "@/context/state";
+import QuestionMark from "@/icons/question";
 import { ALGORITHM } from "@/types";
 import React from "react";
 
-const Header = ({ runAlgorithm }) => {
+const Header = ({ runAlgorithm, isAlgoRunning }) => {
   const { globalState } = useStateContext();
 
   const { currentAlgo } = globalState;
@@ -23,7 +24,7 @@ const Header = ({ runAlgorithm }) => {
           "Breadth-First Search (BFS) is an unweighted graph traversal algorithm visiting all nodes at the current level before moving to the next level.",
           "guarantees the shortest path!",
         ];
-      case ALGORITHM.ASTART:
+      case ALGORITHM.ASTAR:
         isWeighted = true;
         return [
           "A* Search is a weighted graph pathfinding algorithm considering both actual cost and estimated cost to the destination.",
@@ -68,23 +69,38 @@ const Header = ({ runAlgorithm }) => {
             <div className="p-2 border w-5 h-5 bg-blue-400" />
             <span>Shortest Path Node</span>
           </div>
-          <div className="flex items-center gap-1">
-            <div className="p-2 border w-5 h-5 bg-weight bg-no-repeat bg-cover bg-center" />
-            <span className={`${!isWeighted ? "line-through" : ""}`}>
+          <div className="flex items-center gap-1 ">
+            <div className="p-2 w-5 h-5 bg-weight bg-no-repeat bg-cover bg-center" />
+            <span
+              className={`relative ${
+                !isWeighted ? "line-through text-red-600" : ""
+              }`}
+            >
               Weight Node
+              <span className="absolute -top-1 -right-4 w-4 h-4 text-black group">
+                <QuestionMark />
+                <span class="pointer-events-none z-10 absolute -top-[60px] -left-12 w-max opacity-0 group-hover:opacity-100 bg-gray-600 text-white text-sm p-2 whitespace-normal">
+                  This is cost = 15 <br /> press W + press and drag mouse in the
+                  cell
+                </span>
+                <div className="h-4 w-4 bg-gray-600 absolute -top-4 origin-center rotate-45 opacity-0 group-hover:opacity-100" />
+              </span>
             </span>
           </div>
         </div>
         <button
           onClick={runAlgorithm}
-          className="bg-red-400 px-4 py-2 text-white"
+          className={`bg-red-400 px-4 py-2 text-white ${
+            isAlgoRunning ? "bg-red-300" : ""
+          }`}
+          disabled={isAlgoRunning}
         >
-          Visualize
+          Visualize {currentAlgo}
         </button>
       </div>
       <div className="h-14 mb-4 flex flex-col items-center">
         <div>{description}</div>
-        <div>{res}</div>
+        <div className="italic">{res}</div>
       </div>
     </div>
   );

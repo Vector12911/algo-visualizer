@@ -27,7 +27,7 @@ const Navbar = () => {
               onClick={() =>
                 setGlobalState((pre) => ({
                   ...pre,
-                  currentAlgo: ALGORITHM.ASTART,
+                  currentAlgo: ALGORITHM.ASTAR,
                 }))
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"

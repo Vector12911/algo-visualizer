@@ -19,16 +19,16 @@ export interface NodeI {
 }
 
 export enum SPEED {
-  SLOW = 40,
-  NORMAL = 30,
-  FAST = 20,
+  SLOW = 30,
+  NORMAL = 20,
+  FAST = 10,
 }
 
 export enum ALGORITHM {
-  ASTART = "astar",
-  BFS = "bfs",
-  DFS = "dfs",
-  DJK = "djk",
+  ASTAR = "A*",
+  BFS = "BFS",
+  DFS = "DFS",
+  DJK = "Dijkstra",
 }
 
 export enum GRAPH_TYPE {

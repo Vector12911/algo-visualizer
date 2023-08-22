@@ -1,25 +1,27 @@
 //@ts-nocheck
 "use client";
 
-import { Point } from "@/types";
-import { useState } from "react";
+import { NodeI } from "@/types";
 
-const status = (node: any) => {
+const status = (node: NodeI) => {
   if (node.isStart) return "bg-green-400";
   if (node.isEnd) return "bg-red-400";
-  if (node.isVisited) return "bg-blue-800";
-  if (node.isWall) return "bg-gray-800";
+  if (node.isWall) return "bg-gray-600 border-gray-600";
+  if (node.isInShortestPath) return "bg-blue-400 border-blue-400";
+  if (node.isInTraversalPath) return "bg-yellow-400";
   return "bg-white";
 };
-const Cell = ({ cellData, cellClickHandler, cellMouseEnterHandler }) => {
-  const [node, setNode] = useState(cellData);
 
+const Cell = ({ node, handleMouseDown, handleMouseEnter, setPressed }) => {
   return (
     <button
-      onClick={() => cellClickHandler(node)}
-      onMouseEnter={() => cellMouseEnterHandler(node)}
+      onMouseEnter={() => handleMouseEnter(node)}
+      onMouseDown={() => handleMouseDown(node)}
+      onMouseUp={() => setPressed(false)}
       key={`${node.x}-${node.y}`}
-      className={`p-2 border w-5 h-5 ${status(node)}`}
+      className={`p-2 border-[0.5px] w-[22px] h-[22px] ${
+        node.hasWeight ? "bg-weight bg-no-repeat bg-cover bg-center" : ""
+      } ${status(node)}`}
     />
   );
 };

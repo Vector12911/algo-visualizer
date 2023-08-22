@@ -2,6 +2,9 @@
 
 import { Queue } from "@/dataStructure/queue";
 
+const rowDirs = [-1, 0, 1, 0];
+const colDirs = [0, 1, 0, -1];
+
 export function BFS(matrix, startNode, endNode) {
   console.log("BFS...");
   const traversal: PointI[] = [];
@@ -21,15 +24,11 @@ export function BFS(matrix, startNode, endNode) {
   );
   const queue = new Queue();
 
-  const rowDirs = [-1, 0, 1, 0];
-  const colDirs = [0, 1, 0, -1];
-
   queue.enqueue({ row: startRow, col: startCol });
   parentMap.set(`${startRow}-${startCol}`, null);
   visited[startRow][startCol] = true;
 
-  let reached = false;
-  while (!queue.isEmpty() && !reached) {
+  while (!queue.isEmpty()) {
     const { row, col } = queue.dequeue();
     // console.log(`Visiting node at (${row}, ${col})`);
 
@@ -46,8 +45,8 @@ export function BFS(matrix, startNode, endNode) {
           currentNode = parentMap.get(`${currentNode.x}-${currentNode.y}`);
           if (!currentNode) break;
         }
-        reached = true;
-        break;
+        shortestPath.reverse();
+        return { traversal, shortestPath };
       }
 
       if (
@@ -65,8 +64,4 @@ export function BFS(matrix, startNode, endNode) {
       }
     }
   }
-
-  shortestPath.reverse();
-
-  return { traversal, shortestPath };
 }

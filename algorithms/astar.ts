@@ -10,8 +10,8 @@ function createMatrix(rows, cols) {
 const rowDirs = [-1, 0, 1, 0];
 const colDirs = [0, 1, 0, -1];
 
-export function Dijkstra(matrix, startNode, endNode) {
-  console.log("DJK...");
+export function Astar(matrix, startNode, endNode) {
+  console.log("ASTAR...");
   const traversal: PointI[] = [];
   const shortestPath: PointI[] = [];
   // Use a map to store parent nodes for each visited node
@@ -36,9 +36,10 @@ export function Dijkstra(matrix, startNode, endNode) {
   pq.push({ node: startNode, priority: 0 });
 
   while (!pq.isEmpty()) {
-    const { node: current, priority: currentDistance } = pq.pop();
+    const { node: current } = pq.pop();
 
     const { x, y } = current;
+    const currentDistance = distances[x][y];
 
     for (let dir = 0; dir < 4; dir++) {
       const newRow = x + rowDirs[dir];
@@ -73,9 +74,14 @@ export function Dijkstra(matrix, startNode, endNode) {
 
       if (distanceThroughCurrent < distances[newRow][newCol]) {
         distances[newRow][newCol] = distanceThroughCurrent;
+
+        const g = distances[newRow][newCol];
+        const h = manhattanDistance(matrix[newRow][newCol], endNode);
+        const f = g + h;
+
         pq.push({
           node: matrix[newRow][newCol],
-          priority: distanceThroughCurrent,
+          priority: f,
         });
 
         traversal.push({ x: newRow, y: newCol });
@@ -83,4 +89,11 @@ export function Dijkstra(matrix, startNode, endNode) {
       }
     }
   }
+}
+
+function manhattanDistance(currentNode, targetNode) {
+  return (
+    Math.abs(currentNode.x - targetNode.x) +
+    Math.abs(currentNode.y - targetNode.y)
+  );
 }
