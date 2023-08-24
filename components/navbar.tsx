@@ -3,11 +3,21 @@
 import { useStateContext } from "@/context/state";
 import Arrow from "@/icons/arrow";
 import { ALGORITHM, GRAPH_TYPE, SPEED } from "@/types";
+import Image from "next/image";
 import React from "react";
 
+let speed = "normal";
 const Navbar = () => {
-  const { setGlobalState, initializeBoard } = useStateContext();
+  const { setGlobalState, globalState, initializeBoard } = useStateContext();
 
+  const updateSpeed = (value: SPEED) => {
+    setGlobalState((pre) => ({
+      ...pre,
+      animationSpeed: value,
+    }));
+    speed = value === 10 ? "fast" : value === 20 ? "normal" : "slow";
+  };
+  console.log(globalState);
   return (
     <nav className="bg-gray-800 py-4">
       <div className="container mx-auto flex items-center gap-12">
@@ -22,7 +32,7 @@ const Navbar = () => {
             <div>Algorithms</div>
             <Arrow />
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[150%] space-y-2">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[150%] space-y-2 z-10">
             <div
               onClick={() =>
                 setGlobalState((pre) => ({
@@ -76,12 +86,12 @@ const Navbar = () => {
               <Arrow />
             </div>
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-full space-y-2">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-full space-y-2 z-10">
             <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
               A* search
             </div>
             <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
-              Dijktras
+              Dijkstra
             </div>
             <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
               BFS
@@ -93,40 +103,28 @@ const Navbar = () => {
         </div>
 
         <div className="relative group">
-          <div className="text-white hover:text-gray-300 hover:cursor-pointer flex justify-between items-center gap-2">
+          <div className=" text-white hover:text-gray-300 hover:cursor-pointer flex justify-between items-center gap-2">
             <div>Animation Speed</div>
+            <span className="bg-red-400 px-1 w-14 text-center text-sm rounded-sm">
+              {speed}
+            </span>
             <Arrow />
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-full space-y-2">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[70%] space-y-2">
             <div
-              onClick={() =>
-                setGlobalState((pre) => ({
-                  ...pre,
-                  animationSpeed: SPEED.SLOW,
-                }))
-              }
+              onClick={() => updateSpeed(SPEED.SLOW)}
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
               Slow
             </div>
             <div
-              onClick={() =>
-                setGlobalState((pre) => ({
-                  ...pre,
-                  animationSpeed: SPEED.FAST,
-                }))
-              }
+              onClick={() => updateSpeed(SPEED.FAST)}
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
               Fast
             </div>
             <div
-              onClick={() =>
-                setGlobalState((pre) => ({
-                  ...pre,
-                  animationSpeed: SPEED.NORMAL,
-                }))
-              }
+              onClick={() => updateSpeed(SPEED.NORMAL)}
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
               Normal
@@ -138,7 +136,7 @@ const Navbar = () => {
             <div>Graph Type</div>
             <Arrow />
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[130%] space-y-2">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[130%] space-y-2 z-10">
             <div
               onClick={() =>
                 setGlobalState((pre) => ({

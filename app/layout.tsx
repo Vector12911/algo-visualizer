@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Algorithm Visualizer",
-  description: "It will provide vizualization of different algorithm",
+  description: "It will provide visualization of different algorithm",
 };
 
 export default function RootLayout({
