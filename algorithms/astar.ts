@@ -72,7 +72,10 @@ export function Astar(matrix, startNode, endNode) {
 
       const distanceThroughCurrent = currentDistance + weight;
 
-      if (distanceThroughCurrent < distances[newRow][newCol]) {
+      if (
+        distances[newRow][newCol] === Infinity &&
+        distanceThroughCurrent < distances[newRow][newCol]
+      ) {
         distances[newRow][newCol] = distanceThroughCurrent;
 
         const g = distances[newRow][newCol];

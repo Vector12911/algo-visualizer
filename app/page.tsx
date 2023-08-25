@@ -81,21 +81,32 @@ export default function PathFinder() {
       }
     }
 
+    const map1 = new Set();
+    const map2 = new Set();
+
     for (let i = 0; i < traversal.length; i++) {
+      const { x, y } = traversal[i];
+      map1.add(`${x}_${y}`);
       setTimeout(() => {
-        const { x, y } = traversal[i];
         matrix[x][y].isInTraversalPath = true;
         setfakeState(i);
       }, animationSpeed * i);
     }
 
+    console.log("traversal.length : ", traversal.length);
+    console.log("map1.length : ", map1.size);
+
     for (let i = 0; i < shortestPath.length; i++) {
+      const { x, y } = shortestPath[i];
+      map2.add(`${x}_${y}`);
       setTimeout(() => {
-        const { x, y } = shortestPath[i];
         matrix[x][y].isInShortestPath = true;
         setfakeState(i);
       }, animationSpeed * (traversal.length + i));
     }
+
+    console.log("shortestPath.length : ", shortestPath.length);
+    console.log("map2.length : ", map2.size);
 
     setTimeout(
       () => setIsAlgoRunning(false),
@@ -177,9 +188,3 @@ export default function PathFinder() {
     </main>
   );
 }
-
-//TODO:
-/**
- * 1. add weights on the cell
- * 2.
- */

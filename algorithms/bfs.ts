@@ -30,7 +30,6 @@ export function BFS(matrix, startNode, endNode) {
 
   while (!queue.isEmpty()) {
     const { row, col } = queue.dequeue();
-    // console.log(`Visiting node at (${row}, ${col})`);
 
     for (let dir = 0; dir < 4; dir++) {
       const newRow = row + rowDirs[dir];

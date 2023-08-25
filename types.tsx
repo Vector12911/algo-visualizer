@@ -19,9 +19,9 @@ export interface NodeI {
 }
 
 export enum SPEED {
-  SLOW = 30,
-  NORMAL = 20,
-  FAST = 10,
+  SLOW = 20,
+  NORMAL = 15,
+  FAST = 5,
 }
 
 export enum ALGORITHM {

@@ -15,43 +15,45 @@ const config: Config = {
         weight: "url('/weight-icon.png')",
       },
       keyframes: {
+        visitedAnimation: {
+          "0%": {
+            transform: "scale(0.4)",
+            borderRadius: "50%",
+            outline: "0",
+            backgroundColor: "red",
+          },
+          "50%": {
+            transform: "scale(0.4)",
+            borderRadius: "50%",
+            outline: "0",
+            backgroundColor: "red",
+          },
+          "100%": {
+            transform: "scale(1)",
+            backgroundColor: "yellow",
+          },
+        },
         // visitedAnimation: {
         //   "0%": {
-        //     transform: "scale(0.4)",
+        //     transform: "scale(0.3)",
         //     borderRadius: "50%",
         //     outline: "0",
         //     backgroundColor: "rgba(89, 224, 202, 0.75)",
         //   },
         //   "50%": {
-        //     transform: "scale(0.8)",
         //     outline: "0",
+        //     backgroundColor: "rgba(12, 37, 180, 0.75)",
+        //   },
+        //   "60%": {
+        //     transform: "scale(1)",
+        //     outline: "1px",
+        //     backgroundColor: "rgba(60, 96, 196, 0.75)",
         //   },
         //   "100%": {
         //     transform: "scale(1)",
-        //     backgroundColor: "yellow",
+        //     backgroundColor: "rgba(129, 209, 219, 0.774)",
         //   },
         // },
-        visitedAnimation: {
-          "0%": {
-            transform: "scale(0.3)",
-            borderRadius: "50%",
-            outline: "0",
-            backgroundColor: "rgba(89, 224, 202, 0.75)",
-          },
-          "50%": {
-            outline: "0",
-            backgroundColor: "rgba(12, 37, 180, 0.75)",
-          },
-          "60%": {
-            transform: "scale(1)",
-            outline: "1px",
-            backgroundColor: "rgba(60, 96, 196, 0.75)",
-          },
-          "100%": {
-            transform: "scale(1)",
-            backgroundColor: "rgba(129, 209, 219, 0.774)",
-          },
-        },
         shortestPath: {
           "0%": {
             transform: "scale(0.6)",
