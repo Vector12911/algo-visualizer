@@ -1,7 +1,7 @@
 //@ts-nocheck
 "use client";
 
-import { NodeI } from "@/types";
+import { NodeI } from "@/src/types";
 
 const status = (node: NodeI) => {
   if (node.isStart) return "bg-green-400";

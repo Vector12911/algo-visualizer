@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 p-2 absolute bottom-0 w-full">
+    <footer className="bg-gray-800 p-2 fixed bottom-0 w-full">
       <div className="container mx-auto flex text-white justify-between">
         <div />
         <p>&copy; {new Date().getFullYear()} Created By Amrit Sharma</p>

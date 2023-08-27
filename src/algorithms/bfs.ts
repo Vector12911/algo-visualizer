@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import { Queue } from "@/dataStructure/queue";
+import { Queue } from "@/src/dataStructure/queue";
 
 const rowDirs = [-1, 0, 1, 0];
 const colDirs = [0, 1, 0, -1];

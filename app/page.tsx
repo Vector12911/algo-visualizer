@@ -1,15 +1,15 @@
 //@ts-nocheck
 "use client";
 
-import { BFS } from "@/algorithms/bfs";
-import { Dijkstra } from "@/algorithms/dijktras";
-import Cell from "@/components/cell";
-import Header from "@/components/header";
-import { ALGORITHM, Point } from "@/types";
+import { BFS } from "@/src/algorithms/bfs";
+import { Dijkstra } from "@/src/algorithms/dijktras";
+import Cell from "@/src/components/cell";
+import Header from "@/src/components/header";
+import { ALGORITHM, Point } from "@/src/types";
 import { useEffect, useState } from "react";
-import { useStateContext } from "../context/state";
-import { Astar } from "@/algorithms/astar";
-import { DFS } from "@/algorithms/dfs";
+import { useStateContext } from "../src/context/state";
+import { Astar } from "@/src/algorithms/astar";
+import { DFS } from "@/src/algorithms/dfs";
 
 export default function PathFinder() {
   const [pressed, setPressed] = useState(false);

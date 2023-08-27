@@ -1,8 +1,8 @@
 //@ts-nocheck
 "use client";
-import { useStateContext } from "@/context/state";
-import Arrow from "@/icons/arrow";
-import { ALGORITHM, GRAPH_TYPE, SPEED } from "@/types";
+import { useStateContext } from "@/src/context/state";
+import Arrow from "@/src/icons/arrow";
+import { ALGORITHM, GRAPH_TYPE, SPEED } from "@/src/types";
 import Image from "next/image";
 import React from "react";
 
@@ -15,11 +15,10 @@ const Navbar = () => {
       ...pre,
       animationSpeed: value,
     }));
-    speed = value === 10 ? "fast" : value === 20 ? "normal" : "slow";
+    speed = value === 5 ? "fast" : value === 15 ? "normal" : "slow";
   };
-  console.log(globalState);
   return (
-    <nav className="bg-gray-800 py-4">
+    <nav className="bg-gray-800 py-4 sticky top-0">
       <div className="container mx-auto flex items-center gap-12">
         <div>
           <a href="#" className="text-white font-bold text-lg">
@@ -110,7 +109,7 @@ const Navbar = () => {
             </span>
             <Arrow />
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[70%] space-y-2">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[70%] space-y-2 z-10">
             <div
               onClick={() => updateSpeed(SPEED.SLOW)}
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"

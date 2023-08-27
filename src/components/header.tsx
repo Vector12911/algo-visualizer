@@ -1,7 +1,7 @@
 //@ts-nocheck
-import { useStateContext } from "@/context/state";
-import QuestionMark from "@/icons/question";
-import { ALGORITHM } from "@/types";
+import { useStateContext } from "@/src/context/state";
+import QuestionMark from "@/src/icons/question";
+import { ALGORITHM } from "@/src/types";
 import React from "react";
 
 const Header = ({ runAlgorithm, isAlgoRunning }) => {

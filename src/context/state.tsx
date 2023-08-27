@@ -1,7 +1,7 @@
 //@ts-nocheck
 "use client";
 
-import { ALGORITHM, GRAPH_TYPE, NodeI, SPEED } from "@/types";
+import { ALGORITHM, GRAPH_TYPE, NodeI, SPEED } from "@/src/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ROWS = 24;
