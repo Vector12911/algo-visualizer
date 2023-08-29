@@ -59,7 +59,7 @@ const Header = ({ runAlgorithm, isAlgoRunning }) => {
               Wall Node
               <span className="absolute -top-1 -right-4 w-4 h-4 text-black group">
                 <QuestionMark />
-                <span class="pointer-events-none z-10 absolute -top-10 -left-12 w-max opacity-0 group-hover:opacity-100 bg-gray-600 text-white text-sm p-2 whitespace-normal">
+                <span className="pointer-events-none z-10 absolute -top-10 -left-12 w-max opacity-0 group-hover:opacity-100 bg-gray-600 text-white text-sm p-2 whitespace-normal">
                   press and drag mouse in the cell
                 </span>
                 <div className="h-4 w-4 bg-gray-600 absolute -top-4 origin-center rotate-45 opacity-0 group-hover:opacity-100" />
@@ -88,7 +88,7 @@ const Header = ({ runAlgorithm, isAlgoRunning }) => {
               Weight Node
               <span className="absolute -top-1 -right-4 w-4 h-4 text-black group">
                 <QuestionMark />
-                <span class="pointer-events-none z-10 absolute -top-[60px] -left-12 w-max opacity-0 group-hover:opacity-100 bg-gray-600 text-white text-sm p-2 whitespace-normal">
+                <span className="pointer-events-none z-10 absolute -top-[60px] -left-12 w-max opacity-0 group-hover:opacity-100 bg-gray-600 text-white text-sm p-2 whitespace-normal">
                   This is cost = 15 <br /> press W + press and drag mouse in the
                   cell
                 </span>

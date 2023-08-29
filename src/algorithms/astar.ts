@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import { PriorityQueue } from "@/src/dataStructure/priorityQueue"; // Import your pq class here
+import { PriorityQueue } from "@/src/dataStructure/priorityQueue";
 import { PointI } from "@/src/types";
 
 function createMatrix(rows, cols) {
@@ -34,8 +34,8 @@ export function Astar(matrix, startNode, endNode) {
 
   parentMap.set(`${startRow}-${startCol}`, null);
   pq.push({ node: startNode, priority: 0 });
-
-  while (!pq.isEmpty()) {
+  let reached = false;
+  while (!pq.isEmpty() && !reached) {
     const { node: current } = pq.pop();
 
     const { x, y } = current;
@@ -65,7 +65,8 @@ export function Astar(matrix, startNode, endNode) {
           if (!currentNode) break;
         }
         shortestPath.reverse();
-        return { traversal, shortestPath };
+        reached = true;
+        break;
       }
 
       const weight = matrix[newRow][newCol].weight;
@@ -92,6 +93,7 @@ export function Astar(matrix, startNode, endNode) {
       }
     }
   }
+  return { traversal, shortestPath };
 }
 
 function manhattanDistance(currentNode, targetNode) {

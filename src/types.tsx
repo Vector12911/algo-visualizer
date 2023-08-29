@@ -23,12 +23,14 @@ export enum SPEED {
   NORMAL = 15,
   FAST = 5,
 }
+
 export enum COLOR {
   SOURCE = "#34d399",
   DESTINATION = "#f87171",
   WALL = "#4b5563",
   TRAVERSAL_PATH = "#facc15",
   SHORTEST_PATH = "#60a5fa",
+  EDGE = "#60a5fa",
 }
 
 export enum ALGORITHM {

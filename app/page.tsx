@@ -1,15 +1,15 @@
 //@ts-nocheck
 "use client";
 
-import { BFS } from "@/src/algorithms/bfs";
-import { Dijkstra } from "@/src/algorithms/dijktras";
-import Cell from "@/src/components/cell";
-import Header from "@/src/components/header";
-import { ALGORITHM, Point } from "@/src/types";
+import { BFS } from "@/algorithms/bfs";
+import { Dijkstra } from "@/algorithms/dijktras";
+import Header from "@/components/header";
+import { ALGORITHM, Point } from "@/types";
 import { useEffect, useState } from "react";
-import { useStateContext } from "../src/context/state";
-import { Astar } from "@/src/algorithms/astar";
-import { DFS } from "@/src/algorithms/dfs";
+import { useStateContext } from "@/context/state";
+import { Astar } from "@/algorithms/astar";
+import { DFS } from "@/algorithms/dfs";
+import Cell from "@/components/cell";
 
 export default function PathFinder() {
   const [pressed, setPressed] = useState(false);
@@ -81,32 +81,21 @@ export default function PathFinder() {
       }
     }
 
-    const map1 = new Set();
-    const map2 = new Set();
-
     for (let i = 0; i < traversal.length; i++) {
       const { x, y } = traversal[i];
-      map1.add(`${x}_${y}`);
       setTimeout(() => {
         matrix[x][y].isInTraversalPath = true;
         setfakeState(i);
       }, animationSpeed * i);
     }
 
-    console.log("traversal.length : ", traversal.length);
-    console.log("map1.length : ", map1.size);
-
     for (let i = 0; i < shortestPath.length; i++) {
       const { x, y } = shortestPath[i];
-      map2.add(`${x}_${y}`);
       setTimeout(() => {
         matrix[x][y].isInShortestPath = true;
         setfakeState(i);
       }, animationSpeed * (traversal.length + i));
     }
-
-    console.log("shortestPath.length : ", shortestPath.length);
-    console.log("map2.length : ", map2.size);
 
     setTimeout(
       () => setIsAlgoRunning(false),

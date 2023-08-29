@@ -28,7 +28,8 @@ export function BFS(matrix, startNode, endNode) {
   parentMap.set(`${startRow}-${startCol}`, null);
   visited[startRow][startCol] = true;
 
-  while (!queue.isEmpty()) {
+  let reached = false;
+  while (!queue.isEmpty() && !reached) {
     const { row, col } = queue.dequeue();
 
     for (let dir = 0; dir < 4; dir++) {
@@ -45,7 +46,7 @@ export function BFS(matrix, startNode, endNode) {
           if (!currentNode) break;
         }
         shortestPath.reverse();
-        return { traversal, shortestPath };
+        reached = true;
       }
 
       if (
@@ -63,4 +64,5 @@ export function BFS(matrix, startNode, endNode) {
       }
     }
   }
+  return { traversal, shortestPath };
 }
