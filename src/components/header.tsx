@@ -55,7 +55,7 @@ const Header = ({ runAlgorithm, isAlgoRunning }) => {
           </div>
           <div className="flex items-center gap-1">
             <div className="p-2 border w-5 h-5 bg-gray-600" />
-            <span className="relative">
+            <span className="relative text-gray-800">
               Wall Node
               <span className="absolute -top-1 -right-4 w-4 h-4 text-black group">
                 <QuestionMark />
@@ -99,8 +99,8 @@ const Header = ({ runAlgorithm, isAlgoRunning }) => {
         </div>
         <button
           onClick={runAlgorithm}
-          className={`bg-red-400 px-4 py-2 text-white rounded-sm ${
-            isAlgoRunning ? "bg-red-200" : ""
+          className={`px-4 py-2 text-white rounded-sm ${
+            isAlgoRunning ? "bg-red-300 cursor-not-allowed" : "bg-red-400"
           }`}
           disabled={isAlgoRunning}
         >

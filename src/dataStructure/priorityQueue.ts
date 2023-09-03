@@ -111,17 +111,17 @@ export class PriorityQueue {
 }
 
 // Creating The Priority Queue
-var PriQueue = new PriorityQueue();
+// var PriQueue = new PriorityQueue();
 
 // Adding the Elements
-PriQueue.push({ item: 32, priority: 10 });
-PriQueue.push({ item: 50, priority: 9 });
-PriQueue.push({ item: 12, priority: 14 });
-PriQueue.push({ item: 9, priority: 12 });
-PriQueue.push({ item: 33, priority: 11 });
+// PriQueue.push({ item: 32, priority: 10 });
+// PriQueue.push({ item: 50, priority: 9 });
+// PriQueue.push({ item: 12, priority: 14 });
+// PriQueue.push({ item: 9, priority: 12 });
+// PriQueue.push({ item: 33, priority: 11 });
 
-console.log(PriQueue.pop());
-console.log(PriQueue.pop());
-console.log(PriQueue.pop());
-console.log(PriQueue.pop());
-console.log(PriQueue.pop());
+// console.log(PriQueue.pop());
+// console.log(PriQueue.pop());
+// console.log(PriQueue.pop());
+// console.log(PriQueue.pop());
+// console.log(PriQueue.pop());
