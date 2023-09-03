@@ -1,20 +1,20 @@
 //@ts-nocheck
 "use client";
-
-import { BFS } from "@/algorithms/bfs";
-import { Dijkstra } from "@/algorithms/dijktras";
-import Header from "@/components/header";
-import { ALGORITHM, Point } from "@/types";
 import { useEffect, useState } from "react";
+
+import { ALGORITHM, Point } from "@/types";
+import Header from "@/components/header";
 import { useStateContext } from "@/context/state";
-import { Astar } from "@/algorithms/astar";
-import { DFS } from "@/algorithms/dfs";
 import Cell from "@/components/cell";
+import { sleep } from "@/src/utils";
+
+import { BFS, Astar, Dijkstra, DFS } from "@/algorithms";
+import { randomMaze } from "@/maze/random";
 
 export default function PathFinder() {
   const [pressed, setPressed] = useState(false);
   const [_, setfakeState] = useState(null);
-  const [isWKeyIsPressed, setWKeyIsPressed] = useState(false);
+  const [isWKeyPressed, setIsWKeyPressed] = useState(false);
   const [isAlgoRunning, setIsAlgoRunning] = useState(false);
 
   const {
@@ -70,10 +70,39 @@ export default function PathFinder() {
     }
     setIsAlgoRunning(true);
     const { traversal, shortestPath } = res;
+    console.log({ traversal, shortestPath });
     animateAlgorithm(traversal, shortestPath);
   };
 
-  const animateAlgorithm = (traversal, shortestPath) => {
+  const animateTraversal = async (index, arr, className) => {
+    if (index >= arr.length) {
+      return;
+    }
+
+    const { x, y } = arr[index];
+    if (className === "node-visited") {
+      matrix[x][y].isInTraversalPath = true;
+    } else if (className === "node-shortest-path") {
+      matrix[x][y].isInShortestPath = true;
+    } else if (className === "wall") {
+      matrix[x][y].isWall = true;
+    }
+
+    const ele = document.getElementById(`${x}-${y}`);
+    ele.className = `p-2 border-[0.5px] w-[22px] h-[22px] ${className}`;
+
+    await sleep(animationSpeed);
+
+    animateTraversal(index + 1, arr, className);
+  };
+
+  const animateMaze = () => {
+    const pairs = randomMaze();
+    animateTraversal(0, pairs, "wall");
+  };
+
+  const animateAlgorithm = async (traversal, shortestPath) => {
+    //clear the traversal path
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[0].length; j++) {
         matrix[i][j].isInTraversalPath = false;
@@ -81,26 +110,15 @@ export default function PathFinder() {
       }
     }
 
-    for (let i = 0; i < traversal.length; i++) {
-      const { x, y } = traversal[i];
-      setTimeout(() => {
-        matrix[x][y].isInTraversalPath = true;
-        setfakeState(i);
-      }, animationSpeed * i);
-    }
+    await animateTraversal(0, traversal, "node-visited");
 
-    for (let i = 0; i < shortestPath.length; i++) {
-      const { x, y } = shortestPath[i];
-      setTimeout(() => {
-        matrix[x][y].isInShortestPath = true;
-        setfakeState(i);
-      }, animationSpeed * (traversal.length + i));
-    }
+    await sleep(animationSpeed * (traversal.length + 110));
 
-    setTimeout(
-      () => setIsAlgoRunning(false),
-      animationSpeed * (traversal.length + shortestPath.length)
-    );
+    await animateTraversal(0, shortestPath, "node-shortest-path");
+
+    await sleep(animationSpeed * shortestPath.length);
+
+    setIsAlgoRunning(false);
   };
 
   const handleMouseDown = (node) => {
@@ -120,14 +138,14 @@ export default function PathFinder() {
     const { x, y } = node;
     if (pressed) {
       if (
-        isWKeyIsPressed &&
+        isWKeyPressed &&
         !node.isStart &&
         !node.isEnd &&
         !node.isWall &&
         (currentAlgo === ALGORITHM.ASTAR || currentAlgo === ALGORITHM.DJK)
       ) {
         node.hasWeight = true;
-        node.weight = 50;
+        node.weight = 20;
       } else {
         node.isWall = true;
       }
@@ -137,13 +155,13 @@ export default function PathFinder() {
 
   const handleKeyDown = (event) => {
     if (event.key === "w" || event.key === "W") {
-      setWKeyIsPressed(true);
+      setIsWKeyPressed(true);
     }
   };
 
   const handleKeyUp = (event) => {
     if (event.key === "w" || event.key === "W") {
-      setWKeyIsPressed(false);
+      setIsWKeyPressed(false);
     }
   };
 
@@ -174,6 +192,7 @@ export default function PathFinder() {
           </div>
         ))}
       </div>
+      <button onClick={animateMaze}>maze</button>
     </main>
   );
 }

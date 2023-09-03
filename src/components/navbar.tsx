@@ -8,7 +8,7 @@ import React from "react";
 
 let speed = "normal";
 const Navbar = () => {
-  const { setGlobalState, globalState, initializeBoard } = useStateContext();
+  const { setGlobalState, initializeBoard } = useStateContext();
 
   const updateSpeed = (value: SPEED) => {
     setGlobalState((pre) => ({
@@ -31,7 +31,7 @@ const Navbar = () => {
             <div>Algorithms</div>
             <Arrow />
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[150%] space-y-2 z-10">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[150%] space-y-2 z-100">
             <div
               onClick={() =>
                 setGlobalState((pre) => ({
@@ -85,7 +85,7 @@ const Navbar = () => {
               <Arrow />
             </div>
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-full space-y-2 z-10">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-full space-y-2 z-100">
             <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
               A* search
             </div>
@@ -109,7 +109,7 @@ const Navbar = () => {
             </span>
             <Arrow />
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[70%] space-y-2 z-10">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[70%] space-y-2 z-100">
             <div
               onClick={() => updateSpeed(SPEED.SLOW)}
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
@@ -135,7 +135,7 @@ const Navbar = () => {
             <div>Graph Type</div>
             <Arrow />
           </div>
-          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[130%] space-y-2 z-10">
+          <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[130%] space-y-2 z-100">
             <div
               onClick={() =>
                 setGlobalState((pre) => ({
@@ -156,7 +156,7 @@ const Navbar = () => {
               }
               className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
             >
-              Linked List
+              Network
             </div>
           </div>
         </div>

@@ -4,8 +4,8 @@
 import { ALGORITHM, GRAPH_TYPE, NodeI, SPEED } from "@/src/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
-const ROWS = 24;
-const COLS = 55;
+export const ROWS = 24;
+export const COLS = 55;
 
 const createNode = (i, j): NodeI => {
   return {
