@@ -45,6 +45,12 @@ export enum GRAPH_TYPE {
   NETWORK = "NETWORK",
 }
 
+export enum MAZE_TYPE {
+  RANDOM = "RANDOM",
+  BACKTRACK_DFS = "BACKTRACK_DFS",
+  NONE = "NONE",
+}
+
 export interface PointI {
   x: number;
   y: number;
