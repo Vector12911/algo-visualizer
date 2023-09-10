@@ -2,14 +2,16 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { ALGORITHM, Point } from "@/types";
+import { ALGORITHM, MAZE_TYPE, Point } from "@/types";
 import Header from "@/components/header";
-import { useStateContext } from "@/context/state";
+import { COLS, ROWS, useStateContext } from "@/context/state";
 import Cell from "@/components/cell";
-import { sleep } from "@/src/utils";
+import { fillWalls, removeWalls, sleep } from "@/src/utils";
 
 import { BFS, Astar, Dijkstra, DFS } from "@/algorithms";
 import { randomMaze } from "@/maze/random";
+import { recussiveMaze } from "@/src/maze/recusrsive";
+import { BacktrackRandomMaze } from "@/src/maze/backtrack-dfs";
 
 export default function PathFinder() {
   const [pressed, setPressed] = useState(false);
@@ -26,9 +28,10 @@ export default function PathFinder() {
     setDestination,
   } = useStateContext();
 
-  const { currentAlgo, animationSpeed } = globalState;
+  const { currentAlgo, animationSpeed, mazeType } = globalState;
 
   useEffect(() => removeWeights(), [currentAlgo]);
+  useEffect(() => animateMaze(), [mazeType]);
 
   const removeWeights = () => {
     if (!source || !destination) return;
@@ -75,17 +78,18 @@ export default function PathFinder() {
   };
 
   const animateTraversal = async (index, arr, className) => {
-    if (index >= arr.length) {
-      return;
-    }
+    if (index >= arr.length) return;
 
     const { x, y } = arr[index];
+
     if (className === "node-visited") {
       matrix[x][y].isInTraversalPath = true;
     } else if (className === "node-shortest-path") {
       matrix[x][y].isInShortestPath = true;
     } else if (className === "wall") {
       matrix[x][y].isWall = true;
+    } else if (className === "bg-white") {
+      matrix[x][y].isWall = false;
     }
 
     const ele = document.getElementById(`${x}-${y}`);
@@ -97,8 +101,27 @@ export default function PathFinder() {
   };
 
   const animateMaze = () => {
-    const pairs = randomMaze();
-    animateTraversal(0, pairs, "wall");
+    if (mazeType === MAZE_TYPE.NONE) return;
+    removeWalls(matrix);
+
+    switch (mazeType) {
+      case MAZE_TYPE.BACKTRACK_DFS:
+        fillWalls(matrix);
+        setfakeState(mazeType);
+        setTimeout(() => {
+          const pairs = BacktrackRandomMaze(matrix, 1, 1);
+          animateTraversal(0, pairs, "bg-white");
+        }, 100);
+        break;
+
+      case MAZE_TYPE.RANDOM:
+        setfakeState(mazeType);
+        const pairs = randomMaze();
+        animateTraversal(0, pairs, "wall");
+        break;
+      default:
+        break;
+    }
   };
 
   const animateAlgorithm = async (traversal, shortestPath) => {
@@ -192,7 +215,6 @@ export default function PathFinder() {
           </div>
         ))}
       </div>
-      <button onClick={animateMaze}>maze</button>
     </main>
   );
 }

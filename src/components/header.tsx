@@ -55,14 +55,14 @@ const Header = ({ runAlgorithm, isAlgoRunning }) => {
           </div>
           <div className="flex items-center gap-1">
             <div className="p-2 border w-5 h-5 bg-gray-600" />
-            <span className="relative text-gray-800">
+            <span className="relative text-gray-800 ">
               Wall Node
-              <span className="absolute -top-1 -right-4 w-4 h-4 text-black group">
+              <span className="absolute -top-1 -right-4 w-4 h-4 text-black group ">
                 <QuestionMark />
-                <span className="pointer-events-none z-10 absolute -top-10 -left-12 w-max opacity-0 group-hover:opacity-100 bg-gray-600 text-white text-sm p-2 whitespace-normal">
+                <span className="pointer-events-none z-10 absolute -top-10 -left-12 w-max hidden group-hover:block bg-gray-600 text-white text-sm p-2 whitespace-normal">
                   press and drag mouse in the cell
                 </span>
-                <div className="h-4 w-4 bg-gray-600 absolute -top-4 origin-center rotate-45 opacity-0 group-hover:opacity-100" />
+                <div className="h-4 w-4 bg-gray-600 absolute -top-4 origin-center rotate-45 hidden group-hover:block -z-20" />
               </span>
             </span>
           </div>

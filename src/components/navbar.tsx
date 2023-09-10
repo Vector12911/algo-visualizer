@@ -1,14 +1,14 @@
 //@ts-nocheck
 "use client";
-import { useStateContext } from "@/src/context/state";
+import { COLS, ROWS, useStateContext } from "@/src/context/state";
 import Arrow from "@/src/icons/arrow";
-import { ALGORITHM, GRAPH_TYPE, SPEED } from "@/src/types";
+import { ALGORITHM, GRAPH_TYPE, MAZE_TYPE, SPEED } from "@/src/types";
 import Image from "next/image";
 import React from "react";
 
 let speed = "normal";
 const Navbar = () => {
-  const { setGlobalState, initializeBoard } = useStateContext();
+  const { setGlobalState, clearPath, initializeBoard } = useStateContext();
 
   const updateSpeed = (value: SPEED) => {
     setGlobalState((pre) => ({
@@ -17,6 +17,7 @@ const Navbar = () => {
     }));
     speed = value === 5 ? "fast" : value === 15 ? "normal" : "slow";
   };
+  // conso
   return (
     <nav className="bg-gray-800 py-4 sticky top-0">
       <div className="container mx-auto flex items-center gap-12">
@@ -86,17 +87,27 @@ const Navbar = () => {
             </div>
           </div>
           <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-full space-y-2 z-100">
-            <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
-              A* search
+            <div
+              onClick={() =>
+                setGlobalState((pre) => ({
+                  ...pre,
+                  mazeType: MAZE_TYPE.RANDOM,
+                }))
+              }
+              className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
+            >
+              Random
             </div>
-            <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
-              Dijkstra
-            </div>
-            <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
-              BFS
-            </div>
-            <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
-              DFS
+            <div
+              onClick={() =>
+                setGlobalState((pre) => ({
+                  ...pre,
+                  mazeType: MAZE_TYPE.BACKTRACK_DFS,
+                }))
+              }
+              className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
+            >
+              DFS Backtracking
             </div>
           </div>
         </div>
@@ -160,8 +171,20 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="hover:cursor-pointer" onClick={() => initializeBoard()}>
+        <div
+          className="hover:cursor-pointer"
+          onClick={() => {
+            initializeBoard();
+            setGlobalState((pre) => ({
+              ...pre,
+              mazeType: MAZE_TYPE.NONE,
+            }));
+          }}
+        >
           <div className="text-white hover:text-gray-300">Clear Board</div>
+        </div>
+        <div className="hover:cursor-pointer" onClick={() => clearPath()}>
+          <div className="text-white hover:text-gray-300">Clear Path</div>
         </div>
       </div>
     </nav>
