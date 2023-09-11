@@ -46,14 +46,6 @@ const Header = ({ runAlgorithm, isAlgoRunning }) => {
       <div className="flex justify-between items-center ">
         <div className="flex flex-wrap gap-7 h-16">
           <div className="flex items-center gap-1">
-            <div className="p-2 border w-5 h-5 bg-green-400" />
-            <span>Start Node</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="p-2 border w-5 h-5 bg-red-400" />
-            <span>Target Node</span>
-          </div>
-          <div className="flex items-center gap-1">
             <div className="p-2 border w-5 h-5 bg-gray-600" />
             <span className="relative text-gray-800 ">
               Wall Node
@@ -66,6 +58,15 @@ const Header = ({ runAlgorithm, isAlgoRunning }) => {
               </span>
             </span>
           </div>
+          <div className="flex items-center gap-1">
+            <div className="p-2 border w-5 h-5 bg-green-400" />
+            <span>Start Node</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <div className="p-2 border w-5 h-5 bg-red-400" />
+            <span>Target Node</span>
+          </div>
+
           <div className="flex items-center gap-1">
             <div className="p-2 border w-5 h-5 bg-white" />
             <span>Not Visited Node</span>
