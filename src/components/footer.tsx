@@ -1,7 +1,6 @@
 "use clients";
 
 import Image from "next/image";
-import Github from "../icons/github";
 
 const Footer = () => {
   return (
