@@ -5,6 +5,8 @@ import Arrow from "@/src/icons/arrow";
 import { ALGORITHM, GRAPH_TYPE, MAZE_TYPE, SPEED } from "@/src/types";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
+import { config } from "../config";
 
 let speed = "normal";
 const Navbar = () => {
@@ -109,6 +111,17 @@ const Navbar = () => {
             >
               DFS Backtracking
             </div>
+            <div
+              onClick={() =>
+                setGlobalState((pre) => ({
+                  ...pre,
+                  mazeType: MAZE_TYPE.RECURSIVE_DIVISION,
+                }))
+              }
+              className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
+            >
+              Recursive division
+            </div>
           </div>
         </div>
 
@@ -147,27 +160,11 @@ const Navbar = () => {
             <Arrow />
           </div>
           <div className="absolute hidden group-hover:block bg-gray-800 p-2 w-[130%] space-y-2 z-100">
-            <div
-              onClick={() =>
-                setGlobalState((pre) => ({
-                  ...pre,
-                  graphType: GRAPH_TYPE.GRID,
-                }))
-              }
-              className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
-            >
-              2D Matrix
+            <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
+              <Link href="/">2D Matrix</Link>
             </div>
-            <div
-              onClick={() =>
-                setGlobalState((pre) => ({
-                  ...pre,
-                  graphType: GRAPH_TYPE.GRAPH,
-                }))
-              }
-              className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1"
-            >
-              Network
+            <div className="w-full hover:bg-red-400 hover:text-white text-gray-300 hover:cursor-pointer px-2 py-1">
+              <Link href="/graph">Network</Link>
             </div>
           </div>
         </div>

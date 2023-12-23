@@ -10,7 +10,10 @@ import { fillWalls, removeWalls, sleep } from "@/src/utils";
 
 import { BFS, Astar, Dijkstra, DFS } from "@/algorithms";
 import { randomMaze } from "@/maze/random";
-import { recussiveMaze } from "@/src/maze/recusrsive";
+import {
+  recursiveDivision,
+  recussiveMaze,
+} from "@/src/maze/recusrsiveDivision";
 import { BacktrackRandomMaze } from "@/src/maze/backtrack-dfs";
 
 export default function PathFinder() {
@@ -118,6 +121,13 @@ export default function PathFinder() {
         setfakeState(mazeType);
         const pairs = randomMaze();
         animateTraversal(0, pairs, "wall");
+        break;
+
+      case MAZE_TYPE.RECURSIVE_DIVISION:
+        setfakeState(mazeType);
+        const xx = recursiveDivision(0, 0, ROWS - 1, COLS - 1);
+        console.log(xx);
+        animateTraversal(0, xx, "wall");
         break;
       default:
         break;

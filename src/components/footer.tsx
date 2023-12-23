@@ -1,6 +1,7 @@
 "use clients";
 
 import Image from "next/image";
+import Github from "../icons/github";
 
 const Footer = () => {
   return (
@@ -9,12 +10,24 @@ const Footer = () => {
         <div />
         <p>&copy; {new Date().getFullYear()} Created By Amrit Sharma</p>
         <div className="flex gap-4">
-          <span className="">
+          <a
+            target="blank"
+            href="https://www.linkedin.com/in/amrit-sharma-h3rt5lw8/"
+          >
             <Image src="/linkedin.svg" width={23} height={23} alt="linkedin" />
-          </span>
-          <span className="bg-white">
-            <Image src="/github.png" width={23} height={23} alt="github" />
-          </span>
+          </a>
+          <a
+            target="blank"
+            href="https://github.com/Vector12911/algo-visualizer"
+          >
+            <Image
+              src="/github.png"
+              width={23}
+              height={23}
+              alt="github"
+              style={{ borderRadius: "100%", background: "white" }}
+            />
+          </a>
         </div>
       </div>
     </footer>
