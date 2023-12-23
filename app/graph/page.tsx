@@ -47,8 +47,6 @@ const Graph = () => {
     ],
   };
 
-  console.log(graphData);
-
   const findNodeById = (id: string) =>
     graphData.nodes.find((node) => node.id === id);
 
@@ -66,7 +64,7 @@ const Graph = () => {
   };
 
   const animate = (traversal, shortestPath) => {
-    for (let i = 1; i < traversal.length; i++) {
+    for (let i = 1; i < traversal.length; i += 2) {
       const u = traversal[i - 1];
       const v = traversal[i];
       setTimeout(() => {
@@ -85,14 +83,8 @@ const Graph = () => {
         updateNodeColorById(v, COLOR.TRAVERSAL_PATH);
         updateEdgeColorById(u, v, COLOR.TRAVERSAL_PATH);
         network.setData(graphData);
-      }, 2000 * (i + traversal.length));
+      }, 1000 * (i + traversal.length));
     }
-    // graphData.nodes.forEach((node, i) => {
-    //   setTimeout(() => {
-    //     node.color = "yellow";
-    //     network.setData(graphData);
-    //   }, 1000 * i);
-    // });
   };
 
   const addNode = (nodeData, callback) => {
@@ -159,6 +151,7 @@ const Graph = () => {
 
   useEffect(() => {
     const container = graphRef?.current;
+
     const options = {
       manipulation: {
         enabled: false,
@@ -206,24 +199,47 @@ const Graph = () => {
 
   const runAlgo = () => {
     const { traversal, shortestPath } = Dijkstra(graph, source, destination);
-    // console.log({ traversal, shortestPath });
+    console.log({ traversal, shortestPath });
     animate(traversal, shortestPath);
   };
 
   return (
     <main>
+      <div className="flex mt-8 gap-5 justify-center items-center">
+        <button
+          className="border px-2 py-1 bg-red-400 text-white"
+          onClick={() => network?.addNodeMode()}
+        >
+          Add Node
+        </button>
+        <button
+          className="border px-2 py-1 bg-red-400 text-white"
+          onClick={() => network?.addEdgeMode()}
+        >
+          Add Edge
+        </button>
+        <button
+          className="border px-2 py-1 bg-red-400 text-white"
+          onClick={() => network?.deleteSelected()}
+        >
+          Delete
+        </button>
+        <button
+          className="border px-2 py-1 bg-red-400 text-white"
+          onClick={runAlgo}
+        >
+          run
+        </button>
+      </div>
       <div
         ref={graphRef}
-        className="border"
-        style={{ width: "100%", height: "500px" }}
+        style={{
+          width: "100%",
+          height: "500px",
+          position: "absolute",
+          bottom: "80px",
+        }}
       />
-      <button onClick={() => network?.addNodeMode()}>Add Node</button>
-      <br></br>
-      <button onClick={() => network?.addEdgeMode()}>Add Edge</button>
-      <br></br>
-      <button onClick={() => network?.deleteSelected()}>Delete</button>
-      <br></br>
-      <button onClick={runAlgo}>run</button>
     </main>
   );
 };
